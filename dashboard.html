@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📊 Admin Dashboard - Lumina Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+    <div class="admin-container">
+        <!-- ===== SIDEBAR ===== -->
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fas fa-crown" style="color: #ffd700;"></i>
+                <span>Lumina Admin</span>
+            </div>
+            <nav>
+                <a href="#" class="active"><i class="fas fa-chart-pie"></i> Dashboard</a>
+                <a href="#" id="navUsers"><i class="fas fa-users"></i> Users</a>
+                <a href="#" id="navLeads"><i class="fas fa-phone"></i> Leads</a>
+                <a href="#" id="navExport"><i class="fas fa-download"></i> Export</a>
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </nav>
+        </div>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <div class="main-content">
+            <div class="top-bar">
+                <h1>Dashboard</h1>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Admin</span>
+                    <span class="online-dot"></span>
+                </div>
+            </div>
+
+            <!-- ===== STATS CARDS ===== -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(255,215,0,0.1); color: #ffd700;">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="totalVisits">0</div>
+                        <div class="stat-label">Total Visits</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(46,204,113,0.1); color: #2ecc71;">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="totalPhones">0</div>
+                        <div class="stat-label">Phone Numbers</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(52,152,219,0.1); color: #3498db;">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="totalShares">0</div>
+                        <div class="stat-label">Total Shares</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(231,76,60,0.1); color: #e74c3c;">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="totalClaimed">0</div>
+                        <div class="stat-label">Claimed</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== USERS TABLE ===== -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3><i class="fas fa-users"></i> Recent Users</h3>
+                    <button class="export-btn" id="exportBtn">
+                        <i class="fas fa-download"></i> Export All
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Phone</th>
+                            <th>Network</th>
+                            <th>Name</th>
+                            <th>Shares</th>
+                            <th>Claimed</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <tr>
+                            <td colspan="7" style="text-align: center; color: rgba(255,255,255,0.2); padding: 40px;">
+                                <i class="fas fa-spinner fa-spin"></i> Loading users...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ===== ACTIVITY LOG ===== -->
+            <div class="table-container" style="margin-top: 16px;">
+                <div class="table-header">
+                    <h3><i class="fas fa-clock"></i> Recent Activity</h3>
+                </div>
+                <div id="activityLog" style="padding: 12px 20px; max-height: 200px; overflow-y: auto; font-size: 13px; color: rgba(255,255,255,0.3);">
+                    <div style="padding: 4px 0;">📱 New user registered: 080****5678</div>
+                    <div style="padding: 4px 0;">✅ User claimed reward: 080****1234</div>
+                    <div style="padding: 4px 0;">📤 User shared offer: 080****9012</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== CHECK ADMIN LOGIN =====
+        if (!localStorage.getItem('lumina_admin')) {
+            window.location.href = 'login.html';
+        }
+
+        // ===== LOAD DATA FROM LOCALSTORAGE =====
+        function loadData() {
+            const users = JSON.parse(localStorage.getItem('lumina_users') || '[]');
+            const visits = parseInt(localStorage.getItem('lumina_visits') || '0');
+            const shares = parseInt(localStorage.getItem('lumina_total_shares') || '0');
+            const claimed = users.filter(u => u.claimed).length;
+
+            document.getElementById('totalVisits').textContent = visits;
+            document.getElementById('totalPhones').textContent = users.length;
+            document.getElementById('totalShares').textContent = shares;
+            document.getElementById('totalClaimed').textContent = claimed;
+
+            // Build table
+            const tbody = document.getElementById('usersTableBody');
+            if (users.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align: center; color: rgba(255,255,255,0.2); padding: 40px;">
+                            <i class="fas fa-users"></i> No users yet
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = users.slice(-20).reverse().map((user, index) => `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${user.phone || 'N/A'}</td>
+                    <td><span class="network-badge">${user.network || 'N/A'}</span></td>
+                    <td>${user.name || 'Anonymous'}</td>
+                    <td>${user.shares || 0}</td>
+                    <td>${user.claimed ? '✅ Yes' : '❌ No'}</td>
+                    <td>${new Date(user.date).toLocaleString()}</td>
+                </tr>
+            `).join('');
+        }
+
+        // ===== EXPORT =====
+        document.getElementById('exportBtn').addEventListener('click', function() {
+            const users = JSON.parse(localStorage.getItem('lumina_users') || '[]');
+            
+            // Create CSV
+            const headers = ['Phone', 'Network', 'Name', 'Email', 'State', 'Shares', 'Claimed', 'Date'];
+            const rows = users.map(user => [
+                user.phone || '',
+                user.network || '',
+                user.name || '',
+                user.email || '',
+                user.state || '',
+                user.shares || 0,
+                user.claimed ? 'Yes' : 'No',
+                new Date(user.date).toLocaleString()
+            ]);
+            
+            let csv = headers.join(',') + '\n';
+            rows.forEach(row => {
+                csv += row.join(',') + '\n';
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `lumina_users_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        });
+
+        // ===== LOGOUT =====
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('lumina_admin');
+                window.location.href = 'login.html';
+            }
+        });
+
+        // ===== INIT =====
+        loadData();
+
+        // ===== SIMULATE LIVE ACTIVITY =====
+        const activities = [
+            '📱 New user registered: 080****' + Math.floor(1000 + Math.random() * 9000),
+            '✅ User claimed reward: 080****' + Math.floor(1000 + Math.random() * 9000),
+            '📤 User shared offer: 080****' + Math.floor(1000 + Math.random() * 9000),
+            '📥 User completed verification: 080****' + Math.floor(1000 + Math.random() * 9000),
+            '🔥 High traffic detected'
+        ];
+
+        setInterval(() => {
+            const log = document.getElementById('activityLog');
+            const div = document.createElement('div');
+            div.style.cssText = 'padding: 4px 0;';
+            div.textContent = activities[Math.floor(Math.random() * activities.length)];
+            log.insertBefore(div, log.firstChild);
+            if (log.children.length > 10) {
+                log.removeChild(log.lastChild);
+            }
+        }, 5000);
+
+        // ===== NAVIGATION =====
+        document.getElementById('navUsers').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.stats-grid').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('navLeads').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.table-container').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('navExport').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('exportBtn').click();
+        });
+
+        console.log('📊 Admin dashboard loaded');
+    </script>
+</body>
+</html>

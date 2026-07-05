@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>⏳ Waitlist - Lumina Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <div class="container" style="max-width: 480px; margin: 20px auto;">
+
+        <div class="header" style="border-radius: 16px 16px 0 0; background: linear-gradient(135deg, #e67e22, #d35400);">
+            <div class="badge" style="background: rgba(255,255,255,0.2); color: #fff;">⏳ Limited Slots</div>
+            <h1 style="font-size: 22px; color: #fff;">
+                You're on the Waitlist!
+                <span style="font-size: 14px;">Hurry, slots are filling up fast super fast</span>
+            </h1>
+        </div>
+
+        <div class="content" style="background: #1a1a2e; border-radius: 0 0 16px 16px; padding: 24px; text-align: center;">
+
+            <!-- ===== POSITION ===== -->
+            <div style="font-size: 64px; margin-bottom: 8px;">📋</div>
+            <h2 style="color: #fff; font-size: 18px;">Your Position</h2>
+            <div style="font-size: 48px; font-weight: 900; color: #ffd700; margin: 4px 0;" id="waitlistPosition">#247</div>
+            <p style="color: rgba(255,255,255,0.3); font-size: 13px;">
+                <span id="totalWaitlist">12,847</span> people are ahead of you
+            </p>
+
+            <!-- ===== PROGRESS ===== -->
+            <div class="progress-wrap mt-16">
+                <div class="progress-track">
+                    <div class="progress-bar" id="waitlistProgress" style="width: 0%;"></div>
+                </div>
+                <div class="progress-label">
+                    <span>Progress</span>
+                    <span class="status" id="waitlistPercent">0%</span>
+                </div>
+            </div>
+
+            <!-- ===== ESTIMATED TIME ===== -->
+            <div style="margin-top: 12px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid rgba(255,255,255,0.04);">
+                <p style="color: rgba(255,255,255,0.3); font-size: 13px;">
+                    ⏰ Estimated wait time: <strong style="color: #fff;" id="waitTime">2-3 hours</strong>
+                </p>
+            </div>
+
+            <!-- ===== SHARE TO MOVE UP ===== -->
+            <div style="margin-top: 16px; padding: 16px; background: rgba(255,215,0,0.03); border-radius: 12px; border: 1px solid rgba(255,215,0,0.06);">
+                <p style="color: rgba(255,255,255,0.5); font-size: 13px;">
+                    🚀 <strong style="color: #ffd700;">Share to move up</strong> the waitlist faster!
+                </p>
+                <button class="btn btn-success" id="waitlistShareBtn" style="margin-top: 8px;">
+                    <i class="fab fa-whatsapp"></i> Share & Move Up
+                </button>
+            </div>
+
+            <!-- ===== LIVE UPDATES ===== -->
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.04);">
+                <p style="color: rgba(255,255,255,0.2); font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
+                    <i class="fas fa-clock"></i> Live Updates
+                </p>
+                <div id="liveUpdates" style="margin-top: 8px; text-align: left; font-size: 13px; color: rgba(255,255,255,0.3); max-height: 100px; overflow-y: auto;">
+                    <div style="padding: 4px 0;">✅ 3 people just claimed their reward</div>
+                    <div style="padding: 4px 0;">✅ 2 people moved ahead in the queue</div>
+                    <div style="padding: 4px 0;">⏳ 87 people currently in line</div>
+                </div>
+            </div>
+
+            <!-- ===== BACK ===== -->
+            <div style="margin-top: 16px; text-align: center;">
+                <a href="index.html" style="color: rgba(255,255,255,0.2); font-size: 12px; text-decoration: none;">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== RANDOM POSITION =====
+        const position = Math.floor(Math.random() * 500 + 50);
+        document.getElementById('waitlistPosition').textContent = '#' + position;
+        document.getElementById('totalWaitlist').textContent = (position + Math.floor(Math.random() * 10000 + 2000)).toLocaleString();
+
+        // ===== PROGRESS =====
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+            progress += Math.floor(Math.random() * 2) + 1;
+            if (progress > 100) progress = 100;
+            document.getElementById('waitlistProgress').style.width = progress + '%';
+            document.getElementById('waitlistPercent').textContent = progress + '%';
+            
+            if (progress >= 100) {
+                clearInterval(progressInterval);
+                document.getElementById('waitTime').textContent = 'Almost there!';
+            }
+        }, 3000);
+
+        // ===== SHARE TO MOVE UP =====
+        document.getElementById('waitlistShareBtn').addEventListener('click', function() {
+            const text = encodeURIComponent(
+                '🎉 Join the Lumina Home giveaway! I\'m on the waitlist and getting closer! 👇\n' +
+                window.location.origin + '/index.html'
+            );
+            window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
+            
+            // Boost position
+            const currentPos = parseInt(document.getElementById('waitlistPosition').textContent.replace('#', ''));
+            const newPos = Math.max(1, currentPos - Math.floor(Math.random() * 30 + 10));
+            document.getElementById('waitlistPosition').textContent = '#' + newPos;
+            
+            // Add update
+            const updates = document.getElementById('liveUpdates');
+            const div = document.createElement('div');
+            div.style.cssText = 'padding: 4px 0; color: #ffd700;';
+            div.textContent = '🚀 You moved up ' + (currentPos - newPos) + ' positions by sharing!';
+            updates.insertBefore(div, updates.firstChild);
+            if (updates.children.length > 6) {
+                updates.removeChild(updates.lastChild);
+            }
+        });
+
+        // ===== LIVE UPDATES =====
+        const updateMessages = [
+            '✅ Someone just claimed 10GB + ₦5,000',
+            '⏳ 5 new people joined the waitlist',
+            '✅ 2 people moved to the front of the line',
+            '🎉 A new winner was announced!',
+            '📱 12 people are claiming right now',
+            '🔥 50+ shares in the last minute'
+        ];
+
+        setInterval(() => {
+            const updates = document.getElementById('liveUpdates');
+            const div = document.createElement('div');
+            div.style.cssText = 'padding: 4px 0;';
+            div.textContent = updateMessages[Math.floor(Math.random() * updateMessages.length)];
+            updates.insertBefore(div, updates.firstChild);
+            if (updates.children.length > 6) {
+                updates.removeChild(updates.lastChild);
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>❓ FAQ - Lumina Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            padding: 16px 0;
+        }
+        .faq-item .question {
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        .faq-item .question i {
+            color: #ffd700;
+            transition: transform 0.3s;
+        }
+        .faq-item .question.active i {
+            transform: rotate(180deg);
+        }
+        .faq-item .answer {
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+            line-height: 1.7;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding-top: 0;
+        }
+        .faq-item .answer.open {
+            max-height: 300px;
+            padding-top: 10px;
+        }
+        .faq-search {
+            margin-bottom: 20px;
+        }
+        .faq-search input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+        }
+        .faq-search input:focus {
+            border-color: #ffd700;
+        }
+        .faq-search input::placeholder {
+            color: rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" style="max-width: 480px; margin: 20px auto;">
+
+        <div class="header" style="border-radius: 16px 16px 0 0;">
+            <div class="badge">❓ FAQ</div>
+            <h1 style="font-size: 22px;">
+                Frequently Asked Questions
+                <span style="font-size: 13px;">Everything you need to know</span>
+            </h1>
+        </div>
+
+        <div class="content" style="background: #1a1a2e; border-radius: 0 0 16px 16px; padding: 24px;">
+
+            <div class="faq-search">
+                <input type="text" placeholder="🔍 Search questions..." id="faqSearch" />
+            </div>
+
+            <div id="faqContainer">
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFAQ(this)">
+                        Is this offer really free?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Yes! Lumina Home is giving away 10GB Free Data + ₦5,000 Airtime to celebrate our anniversary. No hidden charges, no subscription fees.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFAQ(this)">
+                        How do I claim my reward?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Simply select your network, enter your phone number, and follow the verification process. It takes less than 2 minutes to complete!</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFAQ(this)">
+                        Why do I need to share?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Sharing helps us reach more Nigerians who can benefit from this offer. It's a way to spread the celebration and give everyone a chance to participate!</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFAQ(this)">
+                        Is my phone number safe?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Yes! Your data is encrypted and will only be used for this promotion. We never share your information with third parties or spam you.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFAQ(this)">
+                        When will I receive my data?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Data and airtime are activated immediately after verification. You'll receive a confirmation SMS within 5-10 minutes after activation.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFAQ(this)">
+                        What if I don't have WhatsApp?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">You can still participate! Just share the link via any social media platform, SMS, or email. The verification system tracks all types of shares.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFAQ(this)">
+                        How many people can claim?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">This is a limited offer for the first 50,000 participants. Over 12,000 people have already claimed theirs, so hurry before slots run out!</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFAQ(this)">
+                        What networks are supported?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">We support all major Nigerian networks: MTN, Airtel, Glo, and 9-Mobile. All networks get the same 10GB + ₦5,000 package.</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; text-align: center;">
+                <a href="contact.html" style="color: #ffd700; font-size: 14px; text-decoration: none;">
+                    <i class="fas fa-headset"></i> Still have questions? Contact Support
+                </a>
+            </div>
+
+            <div style="margin-top: 16px; text-align: center;">
+                <a href="index.html" style="color: rgba(255,255,255,0.2); font-size: 12px; text-decoration: none;">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== TOGGLE FAQ =====
+        function toggleFAQ(el) {
+            const answer = el.nextElementSibling;
+            el.classList.toggle('active');
+            answer.classList.toggle('open');
+        }
+
+        // ===== SEARCH =====
+        document.getElementById('faqSearch').addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            const items = document.querySelectorAll('.faq-item');
+            
+            items.forEach(item => {
+                const question = item.querySelector('.question').textContent.toLowerCase();
+                const answer = item.querySelector('.answer').textContent.toLowerCase();
+                const match = question.includes(query) || answer.includes(query);
+                item.style.display = match || !query ? '' : 'none';
+            });
+        });
+
+        // ===== OPEN FIRST FAQ BY DEFAULT =====
+        setTimeout(() => {
+            const firstQuestion = document.querySelector('.faq-item .question');
+            if (firstQuestion) {
+                firstQuestion.click();
+            }
+        }, 500);
+    </script>
+</body>
+</html>

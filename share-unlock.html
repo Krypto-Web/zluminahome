@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔓 Share to Unlock - Lumina Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <div class="container" style="max-width: 480px; margin: 20px auto;">
+
+        <div class="header" style="border-radius: 16px 16px 0 0; background: linear-gradient(135deg, #e74c3c, #c0392b);">
+            <div class="badge" style="background: rgba(255,255,255,0.2); color: #fff;">🔒 Almost There</div>
+            <h1 style="font-size: 22px; color: #fff;">
+                Share to Unlock!
+                <span style="font-size: 14px;">One more step to claim your reward</span>
+            </h1>
+        </div>
+
+        <div class="content" style="background: #1a1a2e; border-radius: 0 0 16px 16px; padding: 24px; text-align: center;">
+
+            <!-- ===== TIMER ===== -->
+            <div style="background: rgba(231,76,60,0.05); border-radius: 12px; padding: 12px; border: 1px solid rgba(231,76,60,0.1); margin-bottom: 16px;">
+                <p style="color: rgba(255,255,255,0.3); font-size: 13px;">
+                    ⏰ Your data is reserved for 
+                    <strong style="color: #ffd700;" id="timerCountdown">15:00</strong>
+                </p>
+            </div>
+
+            <!-- ===== PROGRESS ===== -->
+            <div style="font-size: 48px; margin-bottom: 8px;">🔓</div>
+            <h2 style="color: #fff; font-size: 18px;">You need 3 more shares!</h2>
+            <p style="color: rgba(255,255,255,0.3); font-size: 13px;">
+                Share with <strong style="color: #ffd700;">3 more groups</strong> to unlock your reward
+            </p>
+
+            <div class="progress-wrap mt-16">
+                <div class="progress-track">
+                    <div class="progress-bar" id="unlockProgress" style="width: 40%; background: linear-gradient(90deg, #e74c3c, #ffd700);"></div>
+                </div>
+                <div class="progress-label">
+                    <span>Progress</span>
+                    <span class="status" id="unlockPercent">40%</span>
+                </div>
+            </div>
+
+            <!-- ===== SHARE BUTTONS ===== -->
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 16px;">
+                <button class="btn btn-success" id="unlockShare1">
+                    <i class="fab fa-whatsapp"></i> Share to 1 Group
+                </button>
+                <button class="btn btn-success" id="unlockShare2" style="opacity: 0.5; cursor: not-allowed;">
+                    <i class="fab fa-whatsapp"></i> Share to 2 Groups
+                </button>
+                <button class="btn btn-success" id="unlockShare3" style="opacity: 0.5; cursor: not-allowed;">
+                    <i class="fab fa-whatsapp"></i> Share to 3 Groups
+                </button>
+            </div>
+
+            <!-- ===== STATUS ===== -->
+            <div style="margin-top: 12px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 12px;">
+                <p style="color: rgba(255,255,255,0.3); font-size: 12px;" id="unlockStatus">
+                    ⏳ Waiting for shares...
+                </p>
+            </div>
+
+            <!-- ===== BACK ===== -->
+            <div style="margin-top: 16px; text-align: center;">
+                <a href="index.html" style="color: rgba(255,255,255,0.2); font-size: 12px; text-decoration: none;">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== TIMER =====
+        let seconds = 900;
+        const timerDisplay = document.getElementById('timerCountdown');
+        const timerInterval = setInterval(() => {
+            seconds--;
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            timerDisplay.textContent = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+            
+            if (seconds <= 0) {
+                clearInterval(timerInterval);
+                timerDisplay.textContent = 'Expired!';
+                timerDisplay.style.color = '#e74c3c';
+            }
+        }, 1000);
+
+        // ===== SHARE SYSTEM =====
+        let shares = 0;
+        const totalNeeded = 3;
+        const buttons = [
+            document.getElementById('unlockShare1'),
+            document.getElementById('unlockShare2'),
+            document.getElementById('unlockShare3')
+        ];
+        const progress = document.getElementById('unlockProgress');
+        const percent = document.getElementById('unlockPercent');
+        const status = document.getElementById('unlockStatus');
+
+        function handleShare(index) {
+            if (shares > index) return;
+            
+            const text = encodeURIComponent(
+                '🎉 Get 10GB Free Data + ₦5,000 Airtime from Lumina Home! Join now: 👇\n' +
+                window.location.origin + '/index.html'
+            );
+            window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
+            
+            shares = index + 1;
+            const progressValue = Math.round((shares / totalNeeded) * 100);
+            progress.style.width = progressValue + '%';
+            percent.textContent = progressValue + '%';
+            
+            // Update buttons
+            buttons.forEach((btn, i) => {
+                if (i <= index) {
+                    btn.style.opacity = '1';
+                    btn.style.cursor = 'pointer';
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> Shared! ✅';
+                    btn.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+                } else if (i === index + 1) {
+                    btn.style.opacity = '1';
+                    btn.style.cursor = 'pointer';
+                } else {
+                    btn.style.opacity = '0.5';
+                    btn.style.cursor = 'not-allowed';
+                }
+            });
+
+            // Update status
+            if (shares >= totalNeeded) {
+                status.innerHTML = '🎉 <strong style="color: #ffd700;">UNLOCKED!</strong> Your reward is ready!';
+                status.style.color = '#ffd700';
+                setTimeout(() => {
+                    window.location.href = 'success.html';
+                }, 1500);
+            } else {
+                status.textContent = `✅ ${shares}/${totalNeeded} shares completed. ${totalNeeded - shares} more to go!`;
+                status.style.color = 'rgba(255,255,255,0.5)';
+            }
+        }
+
+        // Add click handlers
+        buttons.forEach((btn, index) => {
+            btn.addEventListener('click', function() {
+                if (this.style.cursor === 'not-allowed') return;
+                handleShare(index);
+            });
+        });
+    </script>
+</body>
+</html>

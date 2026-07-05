@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔐 Verify Your Identity - Lumina Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <div class="container" style="max-width: 480px; margin: 20px auto;">
+
+        <div class="header" style="border-radius: 16px 16px 0 0; background: linear-gradient(135deg, #1a1a2e, #16213e);">
+            <div class="badge">🔐 Security Check</div>
+            <h1 style="font-size: 20px;">
+                Verify Your Identity
+                <span style="font-size: 13px;">To prevent fraud and protect your reward</span>
+            </h1>
+        </div>
+
+        <div class="content" style="background: #1a1a2e; border-radius: 0 0 16px 16px; padding: 24px;">
+
+            <!-- ===== PROGRESS ===== -->
+            <div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
+                <div style="text-align: center; flex: 1;">
+                    <div style="width: 32px; height: 32px; background: #ffd700; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: #1a1a2e; font-weight: 700; font-size: 14px;">1</div>
+                    <div style="color: #ffd700; font-size: 10px; margin-top: 4px;">Phone</div>
+                </div>
+                <div style="flex: 1; text-align: center; position: relative;">
+                    <div style="height: 2px; background: #ffd700; width: 100%; margin-top: 16px;"></div>
+                    <div style="width: 32px; height: 32px; background: #ffd700; border-radius: 50%; margin: -16px auto 0; display: flex; align-items: center; justify-content: center; color: #1a1a2e; font-weight: 700; font-size: 14px;">2</div>
+                    <div style="color: #ffd700; font-size: 10px; margin-top: 4px;">Verify</div>
+                </div>
+                <div style="text-align: center; flex: 1;">
+                    <div style="width: 32px; height: 32px; background: rgba(255,255,255,0.05); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.2); font-weight: 700; font-size: 14px;">3</div>
+                    <div style="color: rgba(255,255,255,0.2); font-size: 10px; margin-top: 4px;">Claim</div>
+                </div>
+            </div>
+
+            <!-- ===== PHONE DISPLAY ===== -->
+            <div style="background: rgba(255,215,0,0.05); border-radius: 12px; padding: 12px 16px; margin-bottom: 20px; border: 1px solid rgba(255,215,0,0.08);">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="color: rgba(255,255,255,0.4); font-size: 12px;">📱 Phone Number</span>
+                    <span style="color: #fff; font-weight: 600;" id="displayPhone">080****5678</span>
+                    <a href="index.html" style="color: #ffd700; font-size: 12px; text-decoration: none;">Change</a>
+                </div>
+            </div>
+
+            <!-- ===== FORM ===== -->
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="e.g. John Doe" />
+            </div>
+
+            <div class="form-group">
+                <label for="emailAddress">Email Address</label>
+                <input type="email" id="emailAddress" placeholder="e.g. john@example.com" />
+            </div>
+
+            <div class="form-group">
+                <label for="stateSelect">State of Residence</label>
+                <select id="stateSelect">
+                    <option value="">— Select State —</option>
+                    <option>Lagos</option>
+                    <option>Abuja</option>
+                    <option>Rivers</option>
+                    <option>Kano</option>
+                    <option>Oyo</option>
+                    <option>Kaduna</option>
+                    <option>Enugu</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="otpInput">OTP Code (sent to your phone)</label>
+                <div style="display: flex; gap: 8px;">
+                    <input type="text" id="otpInput" placeholder="6-digit code" maxlength="6" style="flex: 1;" />
+                    <button style="background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.2); border-radius: 12px; padding: 0 16px; color: #ffd700; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;" id="resendOTP">Resend</button>
+                </div>
+                <div style="font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 4px;">We sent an SMS to your phone</div>
+            </div>
+
+            <button class="btn btn-primary btn-glow" id="verifyBtn">
+                <i class="fas fa-check-circle"></i> Verify & Claim
+            </button>
+
+            <div style="text-align: center; margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.2);">
+                <i class="fas fa-lock"></i> Your data is secure and will only be used for verification
+            </div>
+
+            <div style="margin-top: 16px; text-align: center;">
+                <a href="index.html" style="color: rgba(255,255,255,0.2); font-size: 12px; text-decoration: none;">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== SHOW PARTIAL PHONE =====
+        const phone = localStorage.getItem('lumina_phone') || '08012345678';
+        const displayPhone = phone.slice(0, 3) + '****' + phone.slice(-4);
+        document.getElementById('displayPhone').textContent = displayPhone;
+
+        // ===== VERIFY =====
+        document.getElementById('verifyBtn').addEventListener('click', function() {
+            const name = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('emailAddress').value.trim();
+            const state = document.getElementById('stateSelect').value;
+            const otp = document.getElementById('otpInput').value.trim();
+
+            if (!name || !email || !state || otp.length !== 6) {
+                alert('Please fill in all fields correctly');
+                return;
+            }
+
+            // Save to localStorage
+            localStorage.setItem('lumina_name', name);
+            localStorage.setItem('lumina_email', email);
+            localStorage.setItem('lumina_state', state);
+            localStorage.setItem('lumina_verified', 'true');
+            localStorage.setItem('lumina_claimed', 'true');
+
+            // Redirect
+            window.location.href = 'success.html';
+        });
+
+        // ===== RESEND OTP =====
+        document.getElementById('resendOTP').addEventListener('click', function() {
+            alert('✅ OTP resent to your phone');
+            this.textContent = 'Sent!';
+            setTimeout(() => { this.textContent = 'Resend'; }, 3000);
+        });
+
+        // ===== AUTO-FILL OTP (for demo) =====
+        document.getElementById('otpInput').addEventListener('input', function() {
+            if (this.value.length === 6) {
+                document.getElementById('verifyBtn').style.opacity = '1';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📨 SMS Verification - Lumina Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <div class="container" style="max-width: 480px; margin: 20px auto;">
+
+        <div class="header" style="border-radius: 16px 16px 0 0; background: linear-gradient(135deg, #1a1a2e, #16213e);">
+            <div class="badge">📨 SMS Verification</div>
+            <h1 style="font-size: 20px;">
+                Verify Your Phone
+                <span style="font-size: 13px;">Enter the code we sent via SMS</span>
+            </h1>
+        </div>
+
+        <div class="content" style="background: #1a1a2e; border-radius: 0 0 16px 16px; padding: 24px;">
+
+            <!-- ===== PHONE ===== -->
+            <div style="background: rgba(255,215,0,0.05); border-radius: 12px; padding: 12px 16px; margin-bottom: 20px; border: 1px solid rgba(255,215,0,0.08);">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="color: rgba(255,255,255,0.4); font-size: 12px;">📱 Sending to</span>
+                    <span style="color: #fff; font-weight: 600;" id="smsPhone">080****5678</span>
+                    <a href="index.html" style="color: #ffd700; font-size: 12px; text-decoration: none;">Change</a>
+                </div>
+            </div>
+
+            <!-- ===== OTP INPUT ===== -->
+            <div style="text-align: center;">
+                <p style="color: rgba(255,255,255,0.3); font-size: 13px; margin-bottom: 16px;">
+                    We sent a 6-digit code to your phone. Please enter it below.
+                </p>
+
+                <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+                    <input type="text" maxlength="1" class="otp-digit" style="width: 44px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.06); border-radius: 12px; color: #fff; outline: none;" />
+                    <input type="text" maxlength="1" class="otp-digit" style="width: 44px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.06); border-radius: 12px; color: #fff; outline: none;" />
+                    <input type="text" maxlength="1" class="otp-digit" style="width: 44px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.06); border-radius: 12px; color: #fff; outline: none;" />
+                    <span style="color: rgba(255,255,255,0.2); font-size: 24px; display: flex; align-items: center;">-</span>
+                    <input type="text" maxlength="1" class="otp-digit" style="width: 44px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.06); border-radius: 12px; color: #fff; outline: none;" />
+                    <input type="text" maxlength="1" class="otp-digit" style="width: 44px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.06); border-radius: 12px; color: #fff; outline: none;" />
+                    <input type="text" maxlength="1" class="otp-digit" style="width: 44px; height: 56px; text-align: center; font-size: 24px; font-weight: 700; background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.06); border-radius: 12px; color: #fff; outline: none;" />
+                </div>
+
+                <button class="btn btn-primary btn-glow" id="verifyOTP">
+                    <i class="fas fa-check-circle"></i> Verify Code
+                </button>
+
+                <div style="margin-top: 12px;">
+                    <button style="background: none; border: none; color: rgba(255,255,255,0.2); font-size: 13px; cursor: pointer; text-decoration: underline;" id="resendSMS">
+                        <i class="fas fa-sync-alt"></i> Resend Code
+                    </button>
+                    <span style="color: rgba(255,255,255,0.1); margin: 0 8px;">|</span>
+                    <span style="color: rgba(255,255,255,0.2); font-size: 12px;" id="resendTimer">30s</span>
+                </div>
+            </div>
+
+            <!-- ===== BACK ===== -->
+            <div style="margin-top: 16px; text-align: center;">
+                <a href="index.html" style="color: rgba(255,255,255,0.2); font-size: 12px; text-decoration: none;">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== SHOW PARTIAL PHONE =====
+        const phone = localStorage.getItem('lumina_phone') || '08012345678';
+        document.getElementById('smsPhone').textContent = phone.slice(0, 3) + '****' + phone.slice(-4);
+
+        // ===== OTP INPUT =====
+        const inputs = document.querySelectorAll('.otp-digit');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', function(e) {
+                this.value = this.value.replace(/\D/g, '');
+                if (this.value && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+            
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && !this.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+                if (e.key === 'Enter') {
+                    document.getElementById('verifyOTP').click();
+                }
+            });
+            
+            input.addEventListener('paste', function(e) {
+                e.preventDefault();
+                const paste = (e.clipboardData || window.clipboardData).getData('text');
+                const digits = paste.replace(/\D/g, '').slice(0, 6);
+                digits.split('').forEach((digit, i) => {
+                    if (i < inputs.length) {
+                        inputs[i].value = digit;
+                    }
+                });
+                if (digits.length === 6) {
+                    document.getElementById('verifyOTP').click();
+                }
+            });
+        });
+
+        // ===== VERIFY =====
+        document.getElementById('verifyOTP').addEventListener('click', function() {
+            let code = '';
+            inputs.forEach(input => { code += input.value; });
+            
+            if (code.length !== 6) {
+                alert('⚠️ Please enter the complete 6-digit code');
+                inputs[0].focus();
+                return;
+            }
+
+            // Simulate verification
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+            this.disabled = true;
+
+            setTimeout(() => {
+                // 90% chance of success
+                if (Math.random() < 0.9) {
+                    localStorage.setItem('lumina_verified', 'true');
+                    window.location.href = 'success.html';
+                } else {
+                    alert('❌ Invalid code. Please try again.');
+                    this.innerHTML = '<i class="fas fa-check-circle"></i> Verify Code';
+                    this.disabled = false;
+                    inputs.forEach(input => { input.value = ''; });
+                    inputs[0].focus();
+                }
+            }, 1500);
+        });
+
+        // ===== RESEND SMS =====
+        let resendTimer = 30;
+        const timerDisplay = document.getElementById('resendTimer');
+        const resendBtn = document.getElementById('resendSMS');
+        let timerInterval;
+
+        function startTimer() {
+            resendTimer = 30;
+            resendBtn.style.opacity = '0.5';
+            resendBtn.style.cursor = 'not-allowed';
+            timerInterval = setInterval(() => {
+                resendTimer--;
+                timerDisplay.textContent = resendTimer + 's';
+                if (resendTimer <= 0) {
+                    clearInterval(timerInterval);
+                    resendBtn.style.opacity = '1';
+                    resendBtn.style.cursor = 'pointer';
+                    timerDisplay.textContent = 'Resend';
+                }
+            }, 1000);
+        }
+
+        startTimer();
+
+        resendBtn.addEventListener('click', function() {
+            if (resendTimer > 0) return;
+            alert('✅ A new code has been sent to your phone');
+            startTimer();
+        });
+    </script>
+</body>
+</html>

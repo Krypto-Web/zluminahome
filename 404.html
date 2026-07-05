@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <div class="container" style="max-width: 480px; margin: 20px auto;">
+
+        <div class="header" style="border-radius: 16px 16px 0 0; background: linear-gradient(135deg, #e74c3c, #c0392b);">
+            <div class="badge" style="background: rgba(255,255,255,0.2); color: #fff;">404</div>
+            <h1 style="font-size: 24px; color: #fff;">
+               😬 Oopsy! Page Not Found
+                <span style="font-size: 14px;">The page you're looking for doesn't exist</span>
+            </h1>
+        </div>
+
+        <div class="content" style="background: #1a1a2e; border-radius: 0 0 16px 16px; padding: 24px; text-align: center;">
+
+            <div style="font-size: 80px; margin-bottom: 8px;">😕</div>
+            <h2 style="color: #fff; font-size: 20px;">Lost Your Way?</h2>
+            <p style="color: rgba(255,255,255,0.4); font-size: 14px; margin-top: 4px;">
+                Don't worry, we'll get you back on track.
+            </p>
+
+            <!-- ===== SUGGESTIONS ===== -->
+            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 8px;">
+                <button class="btn btn-primary btn-glow" onclick="window.location.href='index.html'">
+                    <i class="fas fa-home"></i> Go to Homepage
+                </button>
+                <button class="btn btn-secondary" onclick="window.location.href='claim.html'">
+                    <i class="fas fa-gift"></i> Claim Your Offer
+                </button>
+                <button class="btn btn-secondary" onclick="window.location.href='contact.html'">
+                    <i class="fas fa-headset"></i> Contact Support
+                </button>
+            </div>
+
+            <!-- ===== AUTO REDIRECT ===== -->
+            <div style="margin-top: 16px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 12px;">
+                <p style="color: rgba(255,255,255,0.2); font-size: 12px;">
+                    <i class="fas fa-sync-alt fa-spin"></i> Redirecting to homepage in <span id="redirectTimer">10</span>s
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== AUTO REDIRECT =====
+        let seconds = 10;
+        const timerDisplay = document.getElementById('redirectTimer');
+        const interval = setInterval(() => {
+            seconds--;
+            timerDisplay.textContent = seconds;
+            if (seconds <= 0) {
+                clearInterval(interval);
+                window.location.href = 'index.html';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

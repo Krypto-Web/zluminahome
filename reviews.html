@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>⭐ Reviews - Lumina Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .review-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .review-card .stars {
+            color: #ffd700;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        .review-card .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .review-card .reviewer .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .review-card .reviewer .name {
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .review-card .reviewer .date {
+            color: rgba(255,255,255,0.2);
+            font-size: 11px;
+            margin-left: auto;
+        }
+        .review-card .review-text {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .review-card .verified {
+            display: inline-block;
+            background: rgba(46,204,113,0.1);
+            color: #2ecc71;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+        .rating-summary {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            margin-bottom: 20px;
+        }
+        .rating-summary .big-rating {
+            font-size: 56px;
+            font-weight: 900;
+            color: #ffd700;
+        }
+        .rating-summary .total-reviews {
+            color: rgba(255,255,255,0.3);
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" style="max-width: 480px; margin: 20px auto;">
+
+        <div class="header" style="border-radius: 16px 16px 0 0;">
+            <div class="badge">⭐ Real Reviews</div>
+            <h1 style="font-size: 22px;">
+                What People Are Saying
+                <span style="font-size: 13px;">Over 12,000 verified reviews</span>
+            </h1>
+        </div>
+
+        <div class="content" style="background: #1a1a2e; border-radius: 0 0 16px 16px; padding: 24px;">
+
+            <div class="rating-summary">
+                <div class="big-rating">4.9</div>
+                <div class="stars">★★★★★</div>
+                <div class="total-reviews">Based on 12,847 reviews</div>
+            </div>
+
+            <!-- ===== REVIEWS ===== -->
+            <div id="reviewsContainer">
+                <div class="review-card">
+                    <div class="reviewer">
+                        <img class="avatar" src="https://i.imgur.com/xp1ER6K.jpg" alt="avatar" />
+                        <span class="name">Joseph Emmanuel <span class="verified">✓ Verified</span></span>
+                        <span class="date">2 hours ago</span>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <div class="review-text">I doubted this at first, but it's 100% real! Just got my ₦5,000 airtime and 10GB data. Thank you Lumina Home for this amazing offer! 🎉</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="reviewer">
+                        <img class="avatar" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhC5I3x2Ykht2M6Pktwjzc0xV7dmqJty_eCw4rDcFV5r_eDxXMRGWJF9tuYPEpe_fvnM0DtzfdDKbQUFKAhhnj1tXN97o8EJP_l_XFJeyX7dc1bm6bpocYaeGtrngVoV9TruTJrlONHypx0/s1600/FB_IMG_15869726679037399.jpg" alt="avatar" />
+                        <span class="name">David Anthony <span class="verified">✓ Verified</span></span>
+                        <span class="date">4 hours ago</span>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <div class="review-text">Unbelievable! I just received 10GB on my MTN line. One of the rare websites that actually delivers. Highly recommended! 🙌</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="reviewer">
+                        <img class="avatar" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjgAg5sqDhd96nW2Ek_9vet4ztoELeaZmKUSIgzUImj18MpjZvy2qNPXaEgkSNOxLtEOvrT2iPc9RuUUmu2xnhRydySo5WIFpWEJiYmuMDqXnPKrqFzC8aABhp-mrUbaqinlsgJ5LA6hwZS/s1600/FB_IMG_15869730921979436.jpg" alt="avatar" />
+                        <span class="name">Amahle John <span class="verified">✓ Verified</span></span>
+                        <span class="date">6 hours ago</span>
+                    </div>
+                    <div class="stars">★★★★☆</div>
+                    <div class="review-text">The process was smooth, and I got my airtime after sharing with my WhatsApp groups. Took about 10 minutes total. Thanks! 😊</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="reviewer">
+                        <img class="avatar" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhETuUnZKp3TrK9zDTqBtlN4ahx1RrCH6RqG14wW5J8CIBv6HYs7gQSvAiZBwn8NT3lXcz3h8jR87s1z_qZ2kzEoZ7HRnWzskSuqK5NOfKyiQByU3BgypGHXP-m9LlPyFh2FhIsUdN6cO1DnZb-GTtRMDQk8L75NDDUnEC4JxQ6OwsnAjbKVhhlNxrLyQ/s320/9F5D4C76-9CCB-45EB-BA73-73A125849593.jpeg" alt="avatar" />
+                        <span class="name">Bonolo M. <span class="verified">✓ Verified</span></span>
+                        <span class="date">8 hours ago</span>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <div class="review-text">My friend told me about this and I was skeptical. But I tried it and it actually worked! Got my 10GB data in less than 5 minutes. 💪</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="reviewer">
+                        <img class="avatar" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEil8JKq14RVaTAxLRLo_I9Y8FrjKcxidJVj5VWCdjdedN-e3jCnofk7vmUJMtRnh6lYRzQUYi5EzzmeQ4jHAUNVMtZzaoN-6E3jxM14l_fMgGIGB-KMJA7v7Joj0KCXuB5wUv4xol0UN_pYud8eQ6DPFdVL015K4I1J2WV1inXBU3DpgO88NGfSk8DiWyri/s320/67106520-7D75-4934-9284-EA8FB86F9369.jpeg" alt="avatar" />
+                        <span class="name">Chioma O. <span class="verified">✓ Verified</span></span>
+                        <span class="date">12 hours ago</span>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <div class="review-text">This is legit! I was worried about sharing my number but everything worked out fine. Got both data and airtime. Lumina Home is amazing! 🎊</div>
+                </div>
+            </div>
+
+            <!-- ===== LOAD MORE ===== -->
+            <button class="btn btn-secondary" id="loadMoreReviews" style="margin-top: 12px;">
+                <i class="fas fa-sync-alt"></i> Load More Reviews
+            </button>
+
+            <div style="margin-top: 16px; text-align: center;">
+                <a href="index.html" style="color: rgba(255,255,255,0.2); font-size: 12px; text-decoration: none;">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== MORE FAKE REVIEWS =====
+        const moreReviews = [
+            { name: 'Tunde A.', text: 'Just claimed mine! The process was super easy and fast. Thank you Lumina Home!', time: '15 hours ago', rating: 5 },
+            { name: 'Zainab K.', text: 'I\'ve been telling everyone about this. Finally a giveaway that actually works!', time: '18 hours ago', rating: 5 },
+            { name: 'Emeka N.', text: 'Got my 10GB data and airtime. Sharing was worth it. Thanks! 🙏', time: '22 hours ago', rating: 4 },
+            { name: 'Faith E.', text: 'I was skeptical at first but my brother convinced me. It\'s real!', time: '1 day ago', rating: 5 },
+            { name: 'Oluwaseun J.', text: '10GB on my Airtel line. This is life-changing! God bless Lumina Home!', time: '1 day ago', rating: 5 },
+            { name: 'Grace O.', text: 'Quick and easy process. I got my airtime immediately after verification.', time: '1 day ago', rating: 5 },
+            { name: 'Michael A.', text: 'Works on Glo too! I\'ve already recommended to my whole family.', time: '1 day ago', rating: 5 },
+            { name: 'Sarah J.', text: 'I\'m so happy right now. 10GB data for free? Unbelievable but true!', time: '2 days ago', rating: 5 },
+        ];
+
+        let reviewIndex = 0;
+
+        document.getElementById('loadMoreReviews').addEventListener('click', function() {
+            const container = document.getElementById('reviewsContainer');
+            const stars = ['★', '★★', '★★★', '★★★★', '★★★★★'];
+            
+            for (let i = 0; i < 2 && reviewIndex < moreReviews.length; i++) {
+                const review = moreReviews[reviewIndex];
+                const div = document.createElement('div');
+                div.className = 'review-card';
+                div.style.animation = 'fadeUp 0.3s ease';
+                div.innerHTML = `
+                    <div class="reviewer">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background: ${['#ffd700','#ff6b6b','#4ecdc4','#45b7d1','#f9ca24','#ff9ff3'][Math.floor(Math.random()*6)]}; display: flex; align-items: center; justify-content: center; color: #1a1a2e; font-weight: 700; font-size: 18px;">
+                            ${review.name.charAt(0)}
+                        </div>
+                        <span class="name">${review.name} <span class="verified">✓ Verified</span></span>
+                        <span class="date">${review.time}</span>
+                    </div>
+                    <div class="stars">${stars[review.rating-1]}</div>
+                    <div class="review-text">${review.text}</div>
+                `;
+                container.appendChild(div);
+                reviewIndex++;
+            }
+
+            if (reviewIndex >= moreReviews.length) {
+                this.textContent = 'No More Reviews';
+                this.disabled = true;
+                this.style.opacity = '0.5';
+                this.style.cursor = 'default';
+            }
+        });
+    </script>
+</body>
+</html>

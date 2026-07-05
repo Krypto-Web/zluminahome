@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📞 Contact - Lumina Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <div class="container" style="max-width: 480px; margin: 20px auto;">
+
+        <div class="header" style="border-radius: 16px 16px 0 0;">
+            <div class="badge">📞 Support</div>
+            <h1 style="font-size: 22px;">
+                Get in Touch
+                <span style="font-size: 13px;">We're here to help you</span>
+            </h1>
+        </div>
+
+        <div class="content" style="background: #1a1a2e; border-radius: 0 0 16px 16px; padding: 24px;">
+
+            <!-- ===== CONTACT INFO ===== -->
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 12px;">
+                    <i class="fas fa-phone" style="color: #ffd700; font-size: 20px;"></i>
+                    <div>
+                        <div style="color: rgba(255,255,255,0.3); font-size: 11px;">Phone</div>
+                        <div style="color: #fff; font-weight: 600;">+234 800 LUMINA</div>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 12px;">
+                    <i class="fas fa-envelope" style="color: #ffd700; font-size: 20px;"></i>
+                    <div>
+                        <div style="color: rgba(255,255,255,0.3); font-size: 11px;">Email</div>
+                        <div style="color: #fff; font-weight: 600;">support@luminahome.com</div>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 12px;">
+                    <i class="fas fa-clock" style="color: #ffd700; font-size: 20px;"></i>
+                    <div>
+                        <div style="color: rgba(255,255,255,0.3); font-size: 11px;">Response Time</div>
+                        <div style="color: #fff; font-weight: 600;">2-3 hours average</div>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 12px;">
+                    <i class="fas fa-whatsapp" style="color: #25d366; font-size: 20px;"></i>
+                    <div>
+                        <div style="color: rgba(255,255,255,0.3); font-size: 11px;">WhatsApp</div>
+                        <div style="color: #fff; font-weight: 600;">+234 800 LUMINA</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== FORM ===== -->
+            <div class="form-group">
+                <label for="contactName">Your Name</label>
+                <input type="text" id="contactName" placeholder="e.g. John Doe" />
+            </div>
+
+            <div class="form-group">
+                <label for="contactEmail">Email Address</label>
+                <input type="email" id="contactEmail" placeholder="e.g. john@example.com" />
+            </div>
+
+            <div class="form-group">
+                <label for="contactSubject">Subject</label>
+                <select id="contactSubject">
+                    <option value="">— Select Subject —</option>
+                    <option>Activation Issue</option>
+                    <option>Not Received Data</option>
+                    <option>Technical Problem</option>
+                    <option>General Enquiry</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="contactMessage">Message</label>
+                <textarea id="contactMessage" rows="4" style="width: 100%; padding: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; color: #fff; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; resize: vertical;"></textarea>
+            </div>
+
+            <button class="btn btn-primary btn-glow" id="sendMessageBtn">
+                <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+
+            <div style="text-align: center; margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.2);">
+                <i class="fas fa-clock"></i> We typically respond within 2-3 hours
+            </div>
+
+            <div style="margin-top: 16px; text-align: center;">
+                <a href="index.html" style="color: rgba(255,255,255,0.2); font-size: 12px; text-decoration: none;">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== LIVE CHAT STATUS =====
+        const statuses = ['🟢 Online', '🟢 Online', '🟢 Online', '🟡 Away', '🟢 Online'];
+        const statusDiv = document.createElement('div');
+        statusDiv.style.cssText = 'text-align: center; margin-bottom: 16px; font-size: 13px; color: rgba(255,255,255,0.3);';
+        statusDiv.innerHTML = `<i class="fas fa-circle" style="color: #2ecc71; font-size: 10px;"></i> Support agents are <strong style="color: #2ecc71;">online</strong> now`;
+        document.querySelector('.content').insertBefore(statusDiv, document.querySelector('.form-group'));
+
+        // ===== SEND MESSAGE =====
+        document.getElementById('sendMessageBtn').addEventListener('click', function() {
+            const name = document.getElementById('contactName').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const subject = document.getElementById('contactSubject').value;
+            const message = document.getElementById('contactMessage').value.trim();
+
+            if (!name || !email || !subject || !message) {
+                alert('⚠️ Please fill in all fields');
+                return;
+            }
+
+            // Save to localStorage
+            const tickets = JSON.parse(localStorage.getItem('lumina_tickets') || '[]');
+            tickets.push({
+                name: name,
+                email: email,
+                subject: subject,
+                message: message,
+                date: new Date().toISOString(),
+                status: 'pending'
+            });
+            localStorage.setItem('lumina_tickets', JSON.stringify(tickets));
+
+            alert('✅ Your message has been sent! Our support team will get back to you within 2-3 hours.');
+            window.location.href = 'index.html';
+        });
+
+        // ===== KEYBOARD SHORTCUT =====
+        document.getElementById('contactMessage').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                document.getElementById('sendMessageBtn').click();
+            }
+        });
+    </script>
+</body>
+</html>

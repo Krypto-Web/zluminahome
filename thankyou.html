@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🙏 Thank You - Lumina Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <div class="container" style="max-width: 480px; margin: 20px auto;">
+
+        <div class="header" style="border-radius: 16px 16px 0 0; background: linear-gradient(135deg, #3498db, #2980b9);">
+            <div class="badge" style="background: rgba(255,255,255,0.2); color: #fff;">🙏 Thank You</div>
+            <h1 style="font-size: 24px; color: #fff;">
+                You're All Set!
+                <span style="font-size: 14px;">Your activation is being processed</span>
+            </h1>
+        </div>
+
+        <div class="content" style="background: #1a1a2e; border-radius: 0 0 16px 16px; padding: 24px; text-align: center;">
+
+            <div style="font-size: 72px; margin-bottom: 8px;">🙏</div>
+            <h2 style="color: #fff; font-size: 20px;">Thank You for Participating!</h2>
+            <p style="color: rgba(255,255,255,0.4); font-size: 14px; margin-top: 4px;">
+                Your request has been received and is being processed.
+            </p>
+
+            <!-- ===== STATUS ===== -->
+            <div style="margin-top: 16px; padding: 16px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid rgba(255,255,255,0.04);">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fas fa-spinner fa-spin" style="color: #ffd700;"></i>
+                    <span style="color: rgba(255,255,255,0.5); font-size: 13px;">Processing your activation...</span>
+                </div>
+                <div class="progress-wrap mt-8">
+                    <div class="progress-track">
+                        <div class="progress-bar" id="thankyouProgress" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== INFO ===== -->
+            <div style="margin-top: 16px; text-align: left; font-size: 13px; color: rgba(255,255,255,0.3); line-height: 1.8;">
+                <p><i class="fas fa-check-circle" style="color: #27ae60;"></i> Your 10GB + ₦5,000 is being activated</p>
+                <p><i class="fas fa-clock" style="color: #ffd700;"></i> You'll receive a confirmation SMS in 5-10 minutes</p>
+                <p><i class="fas fa-share-alt" style="color: #3498db;"></i> Share with friends to speed up activation</p>
+            </div>
+
+            <!-- ===== SHARE ===== -->
+            <button class="btn btn-success" id="thankyouShare" style="margin-top: 16px;">
+                <i class="fab fa-whatsapp"></i> Share & Speed Up
+            </button>
+
+            <!-- ===== SUPPORT ===== -->
+            <div style="margin-top: 12px;">
+                <a href="contact.html" style="color: #ffd700; font-size: 13px; text-decoration: none;">
+                    <i class="fas fa-headset"></i> Need help? Contact Support
+                </a>
+            </div>
+
+            <!-- ===== BACK ===== -->
+            <div style="margin-top: 16px; text-align: center;">
+                <a href="index.html" style="color: rgba(255,255,255,0.2); font-size: 12px; text-decoration: none;">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== PROGRESS =====
+        let progress = 0;
+        setInterval(() => {
+            progress += Math.floor(Math.random() * 3) + 1;
+            if (progress > 100) progress = 100;
+            document.getElementById('thankyouProgress').style.width = progress + '%';
+        }, 1000);
+
+        // ===== SHARE =====
+        document.getElementById('thankyouShare').addEventListener('click', function() {
+            const text = encodeURIComponent(
+                '🎉 I just claimed 10GB + ₦5,000 from Lumina Home! It\'s real! Join now: 👇\n' +
+                window.location.origin + '/index.html'
+            );
+            window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
+            
+            // Boost progress
+            progress = Math.min(progress + 20, 100);
+            document.getElementById('thankyouProgress').style.width = progress + '%';
+            
+            if (progress >= 100) {
+                setTimeout(() => {
+                    window.location.href = 'success.html';
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

